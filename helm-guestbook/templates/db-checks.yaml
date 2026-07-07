@@ -4,7 +4,7 @@ metadata:
   name: db-check
   annotations:
     argocd.argoproj.io/sync-wave: "2"
-  namespace: finance
+  namespace: default
 spec:
   backoffLimit: 2
   template:
