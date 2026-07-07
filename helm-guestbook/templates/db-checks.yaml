@@ -1,0 +1,24 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: db-check
+  annotations:
+    argocd.argoproj.io/sync-wave: "2"
+  namespace: finance
+spec:
+  backoffLimit: 2
+  template:
+    spec:
+      restartPolicy: Never
+      containers:
+        - name: db-check
+          image: busybox
+          command: 
+            - sh
+            - -c
+            - echo "Running database check to $DB_HOST..."; sleep 4; echo "Database check completed."
+          env:
+            - name: DB_HOST
+              valueFrom:
+                name: db-config
+                key: db_host
