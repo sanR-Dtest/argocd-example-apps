@@ -19,6 +19,6 @@ spec:
             - echo "Running database check to $DB_HOST..."; sleep 4; echo "Database check completed."
           env:
             - name: DB_HOST
-              valueFrom:
+              configMapKeyRef:
                 name: db-config
                 key: db_host
